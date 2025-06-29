@@ -1,0 +1,1591 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroFit Greens - Personalized Nutrition. Delivered Fresh. Daily.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #10B981;
+            --primary-green-dark: #059669;
+            --green-50: #F0FDF4;
+            --green-100: #DCFCE7;
+            --green-200: #BBF7D0;
+            --amber-600: #D97706;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* Typography Scale */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            
+            /* Spacing Scale */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            overflow-x: hidden;
+            font-size: var(--text-base);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: var(--space-4) 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--gray-800);
+            text-decoration: none;
+        }
+
+        .nav-brand .brand-highlight {
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-8);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+            color: white;
+            padding: var(--space-2) var(--space-6);
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: var(--text-xl);
+            cursor: pointer;
+            color: var(--gray-700);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: var(--space-4);
+                box-shadow: var(--shadow-lg);
+                gap: var(--space-4);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-cta {
+                margin-top: var(--space-4);
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        /* Typography */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .heading-xl {
+            font-size: var(--text-5xl);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .heading-lg {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .heading-md {
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .body-lg {
+            font-size: var(--text-lg);
+            line-height: 1.6;
+        }
+
+        .body-base {
+            font-size: var(--text-base);
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            font-size: var(--text-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:focus {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--green-50);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray-600);
+        }
+
+        .btn-ghost:hover {
+            background: var(--gray-100);
+        }
+
+        .btn-lg {
+            padding: var(--space-4) var(--space-8);
+            font-size: var(--text-lg);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--green-50) 0%, #FFFFFF 50%, var(--green-100) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--green-100);
+            color: #166534;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-6);
+        }
+
+        .hero-text h1 {
+            margin-bottom: var(--space-6);
+        }
+
+        .hero-text p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-8);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-8);
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-6);
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .hero-feature::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, var(--green-50) 0%, var(--green-100) 100%);
+            border-radius: var(--radius-2xl);
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: var(--space-20) 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-16);
+        }
+
+        .section-header h2 {
+            margin-bottom: var(--space-4);
+        }
+
+        .section-header p {
+            color: var(--gray-600);
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+        }
+
+        .benefit-card {
+            padding: var(--space-8);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--green-200);
+        }
+
+        .benefit-icon {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-4);
+            transition: transform 0.2s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+
+        .benefit-card h3 {
+            color: var(--gray-800);
+            margin-bottom: var(--space-3);
+        }
+
+        .benefit-card p {
+            color: var(--gray-600);
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: var(--space-20) 0;
+            background: linear-gradient(135deg, var(--green-50) 0%, var(--green-100) 100%);
+        }
+
+        .quiz-container {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .quiz-progress {
+            margin-bottom: var(--space-8);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            margin-bottom: var(--space-2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+            transition: width 0.5s ease;
+            border-radius: var(--radius-full);
+        }
+
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: var(--space-12);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .quiz-header h3 {
+            margin-bottom: var(--space-4);
+        }
+
+        .quiz-header p {
+            color: var(--gray-600);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            margin: var(--space-8) 0;
+        }
+
+        .quiz-option {
+            width: 100%;
+            padding: var(--space-6);
+            text-align: left;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--text-base);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-green);
+            background: var(--green-50);
+            transform: translateY(-1px);
+        }
+
+        .quiz-option:focus {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary-green);
+            background: var(--green-50);
+            color: var(--primary-green-dark);
+        }
+
+        .quiz-option .radio-dot {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gray-300);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .quiz-option:hover .radio-dot,
+        .quiz-option.selected .radio-dot {
+            border-color: var(--primary-green);
+        }
+
+        .quiz-option.selected .radio-dot {
+            background: var(--primary-green);
+            position: relative;
+        }
+
+        .quiz-option.selected .radio-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-8);
+        }
+
+        /* Quiz Results */
+        .quiz-results {
+            display: none;
+            text-align: center;
+        }
+
+        .quiz-results.active {
+            display: block;
+        }
+
+        .results-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-6);
+        }
+
+        .results-summary {
+            background: var(--green-50);
+            border: 2px solid var(--green-200);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            margin: var(--space-8) 0;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: var(--space-20) 0;
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+        }
+
+        .pricing-card {
+            padding: var(--space-8);
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary-green);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-green);
+            color: white;
+            padding: var(--space-1) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .plan-name {
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .plan-subtitle {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            margin-bottom: var(--space-4);
+        }
+
+        .plan-price {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .plan-period {
+            color: var(--gray-500);
+            font-size: var(--text-base);
+            margin-left: var(--space-1);
+        }
+
+        .plan-description {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            margin-top: var(--space-3);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: var(--space-8) 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-16) 0 var(--space-8);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--space-12);
+            margin-bottom: var(--space-12);
+        }
+
+        .footer-brand h3 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-brand .brand-highlight {
+            color: var(--primary-green);
+        }
+
+        .footer-brand p {
+            color: var(--gray-400);
+            margin-bottom: var(--space-6);
+            max-width: 24rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .footer-social a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .footer-links h4 {
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: var(--text-sm);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-700);
+            padding-top: var(--space-8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        .footer-bottom p {
+            color: var(--gray-400);
+            font-size: var(--text-sm);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-6);
+            font-size: var(--text-sm);
+        }
+
+        .footer-legal a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-8);
+            }
+
+            .heading-xl {
+                font-size: var(--text-3xl);
+            }
+
+            .heading-lg {
+                font-size: var(--text-2xl);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .results-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for accessibility */
+        *:focus {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-green);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1001;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Fixed Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#home" class="nav-brand" aria-label="MicroFit Greens Home">
+                    <span class="brand-highlight">MicroFit</span> Greens
+                </a>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#benefits" class="nav-link">Benefits</a></li>
+                    <li><a href="#quiz" class="nav-link">Quiz</a></li>
+                    <li><a href="#pricing" class="nav-link">Plans</a></li>
+                </ul>
+                
+                <a href="#quiz" class="nav-cta">Start Quiz</a>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero" aria-label="Hero section">
+            <div class="container">
+                <div class="hero-content animate-fade-in">
+                    <div class="hero-text">
+                        <div class="hero-badge">
+                            🌱 Fresh • Personalized • Delivered Daily
+                        </div>
+                        <h1 class="heading-xl">
+                            <span class="text-gradient">Personalized Nutrition.</span><br>
+                            <span>Delivered Fresh.</span><br>
+                            <span style="color: var(--amber-600);">Daily.</span>
+                        </h1>
+                        <p class="body-lg">Get your custom blend of microgreens, sprouts, and functional greens based on your unique health profile. No guesswork. Just results.</p>
+                        
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-lg" onclick="scrollToQuiz()" aria-describedby="quiz-description">
+                                Start Your Health Quiz
+                            </button>
+                            <button class="btn btn-outline btn-lg" onclick="scrollToSection('pricing')">
+                                View Plans
+                            </button>
+                        </div>
+                        <p id="quiz-description" class="sr-only">Take our 2-minute health quiz to get personalized nutrition recommendations</p>
+                        
+                        <div class="hero-features" role="list">
+                            <div class="hero-feature" role="listitem">Locally Grown in Bengaluru</div>
+                            <div class="hero-feature" role="listitem">AI-Powered Personalization</div>
+                            <div class="hero-feature" role="listitem">Weekly Fresh Delivery</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-image animate-scale-in">
+                        <div style="text-align: center; padding: var(--space-8);">
+                            <div style="width: 6rem; height: 6rem; background: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4); font-size: var(--text-2xl);">🥬</div>
+                            <h3 class="heading-md" style="color: #166534; margin-bottom: var(--space-2);">Fresh Daily Pouches</h3>
+                            <p style="color: var(--primary-green-dark);">Your personalized microgreens delivered fresh every week</p>
+                        </div>
+                        
+                        <div style="position: absolute; bottom: -1rem; right: -1rem; background: white; padding: var(--space-4); border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: var(--space-3);">
+                            <div style="width: 3rem; height: 3rem; background: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--text-lg);">📦</div>
+                            <div>
+                                <p style="font-weight: 600; color: var(--gray-800);">Weekly Delivery</p>
+                                <p style="font-size: var(--text-sm); color: var(--gray-500);">Every Sunday</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="benefits" aria-label="Benefits section">
+            <div class="container">
+                <div class="section-header animate-fade-in">
+                    <h2 class="heading-lg">
+                        Why Choose <span class="text-gradient">MicroFit Greens</span>?
+                    </h2>
+                    <p class="body-lg">
+                        We combine cutting-edge health technology with fresh, local produce to deliver nutrition that's perfectly tailored to you.
+                    </p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card card animate-scale-in">
+                        <div class="benefit-icon" role="img" aria-label="DNA icon">🧬</div>
+                        <h3 class="heading-md">AI-Powered Personalization</h3>
+                        <p>Custom greens formula based on your health profile, goals, and lifestyle preferences.</p>
+                    </div>
+                    
+                    <div class="benefit-card card animate-scale-in" style="animation-delay: 0.1s;">
+                        <div class="benefit-icon" role="img" aria-label="Plant sprout icon">🌱</div>
+                        <h3 class="heading-md">Locally Grown Fresh</h3>
+                        <p>Harvested fresh in Bengaluru urban farms and delivered within 24 hours of harvest.</p>
+                    </div>
+                    
+                    <div class="benefit-card card animate-scale-in" style="animation-delay: 0.2s;">
+                        <div class="benefit-icon" role="img" aria-label="Package icon">📦</div>
+                        <h3 class="heading-md">Weekly Delivery</h3>
+                        <p>Eco-friendly packaging delivered every Sunday. Pause or modify anytime.</p>
+                    </div>
+                    
+                    <div class="benefit-card card animate-scale-in" style="animation-delay: 0.3s;">
+                        <div class="benefit-icon" role="img" aria-label="Target icon">🎯</div>
+                        <h3 class="heading-md">Results-Driven</h3>
+                        <p>Track your health journey with our consumption tracker and see real improvements.</p>
+                    </div>
+                    
+                    <div class="benefit-card card animate-scale-in" style="animation-delay: 0.4s;">
+                        <div class="benefit-icon" role="img" aria-label="Microscope icon">🔬</div>
+                        <h3 class="heading-md">Nutritionist Approved</h3>
+                        <p>Every blend is crafted by certified nutritionists and food-tech experts.</p>
+                    </div>
+                    
+                    <div class="benefit-card card animate-scale-in" style="animation-delay: 0.5s;">
+                        <div class="benefit-icon" role="img" aria-label="Green heart icon">💚</div>
+                        <h3 class="heading-md">Zero Waste Approach</h3>
+                        <p>Sustainable farming practices with biodegradable packaging and carbon-neutral delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section" aria-label="Health quiz section">
+            <div class="container">
+                <div class="section-header animate-fade-in">
+                    <h2 class="heading-lg">
+                        Discover Your Perfect <span class="text-gradient">Greens Formula</span>
+                    </h2>
+                    <p class="body-lg">
+                        Take our 2-minute health quiz to get your AI-powered, personalized nutrition plan.
+                    </p>
+                </div>
+
+                <div class="quiz-container">
+                    <!-- Quiz Progress -->
+                    <div class="quiz-progress">
+                        <div class="progress-info">
+                            <span>Question <span id="current-question">1</span> of <span id="total-questions">5</span></span>
+                            <span><span id="progress-percent">20</span>% Complete</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-fill" id="progress-fill" style="width: 20%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Card -->
+                    <div class="quiz-card" id="quiz-form">
+                        <div class="quiz-header">
+                            <h3 id="question-title" class="heading-md">What's your gender?</h3>
+                            <p>Select the option that best describes you</p>
+                        </div>
+
+                        <div class="quiz-options" id="quiz-options" role="radiogroup" aria-labelledby="question-title">
+                            <button class="quiz-option" onclick="handleAnswer('Male')" role="radio" aria-checked="false" tabindex="0">
+                                <div class="radio-dot"></div>
+                                <span>Male</span>
+                            </button>
+                            <button class="quiz-option" onclick="handleAnswer('Female')" role="radio" aria-checked="false" tabindex="-1">
+                                <div class="radio-dot"></div>
+                                <span>Female</span>
+                            </button>
+                            <button class="quiz-option" onclick="handleAnswer('Prefer not to say')" role="radio" aria-checked="false" tabindex="-1">
+                                <div class="radio-dot"></div>
+                                <span>Prefer not to say</span>
+                            </button>
+                        </div>
+
+                        <div class="quiz-navigation">
+                            <button class="btn btn-ghost" onclick="previousQuestion()" id="prev-btn" disabled aria-label="Previous question">
+                                ← Previous
+                            </button>
+                            <button class="btn btn-ghost" onclick="resetQuiz()" aria-label="Start quiz over">
+                                Start Over
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Results -->
+                    <div class="quiz-results" id="quiz-results">
+                        <div class="results-icon">🎉</div>
+                        <h3 class="heading-lg">Your Personalized Plan is Ready!</h3>
+                        <p class="body-lg" style="margin: var(--space-4) 0;">Based on your responses, we've created a custom nutrition plan just for you.</p>
+                        
+                        <div class="results-summary">
+                            <h4 class="heading-md" style="margin-bottom: var(--space-4);">Your Profile Summary</h4>
+                            <div id="results-content" style="text-align: left;">
+                                <!-- Results will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="results-actions">
+                            <button class="btn btn-primary btn-lg" onclick="scrollToSection('pricing')">
+                                View Your Plans
+                            </button>
+                            <button class="btn btn-outline" onclick="resetQuiz()">
+                                Retake Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing" aria-label="Pricing plans section">
+            <div class="container">
+                <div class="section-header animate-fade-in">
+                    <h2 class="heading-lg">
+                        Choose Your <span class="text-gradient">Nutrition Plan</span>
+                    </h2>
+                    <p class="body-lg">
+                        Flexible plans designed to fit your lifestyle. Start small or commit to transformation.
+                    </p>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card card animate-scale-in">
+                        <div class="pricing-header">
+                            <h3 class="plan-name heading-md">Starter Pack</h3>
+                            <p class="plan-subtitle">Try Before You Subscribe</p>
+                            <div>
+                                <span class="plan-price">₹199</span>
+                                <span class="plan-period">/3-day trial</span>
+                            </div>
+                            <p class="plan-description">Perfect for first-time users to experience personalized nutrition</p>
+                        </div>
+
+                        <ul class="feature-list" role="list">
+                            <li role="listitem">3 daily greens pouches</li>
+                            <li role="listitem">Personalized mix based on quiz</li>
+                            <li role="listitem">Free delivery in Bengaluru</li>
+                            <li role="listitem">Health tracking app access</li>
+                            <li role="listitem">Nutritionist chat support</li>
+                        </ul>
+
+                        <button class="btn btn-outline" style="width: 100%;" aria-label="Start 3-day trial">Start Trial</button>
+                    </div>
+
+                    <div class="pricing-card card popular animate-scale-in" style="animation-delay: 0.1s;">
+                        <div class="pricing-header">
+                            <h3 class="plan-name heading-md">Weekly Plan</h3>
+                            <p class="plan-subtitle">Most Flexible</p>
+                            <div>
+                                <span class="plan-price">₹499</span>
+                                <span class="plan-period">/per week</span>
+                            </div>
+                            <p class="plan-description">Weekly commitment with full flexibility to pause or modify</p>
+                        </div>
+
+                        <ul class="feature-list" role="list">
+                            <li role="listitem">7 daily greens pouches</li>
+                            <li role="listitem">AI-optimized nutrition plan</li>
+                            <li role="listitem">Free weekly delivery</li>
+                            <li role="listitem">Custom recipe suggestions</li>
+                            <li role="listitem">Priority customer support</li>
+                            <li role="listitem">Pause anytime</li>
+                        </ul>
+
+                        <button class="btn btn-primary" style="width: 100%;" aria-label="Choose weekly plan">Choose Weekly</button>
+                    </div>
+
+                    <div class="pricing-card card animate-scale-in" style="animation-delay: 0.2s;">
+                        <div class="pricing-header">
+                            <h3 class="plan-name heading-md">Monthly Plan</h3>
+                            <p class="plan-subtitle">Best Value</p>
+                            <div>
+                                <span class="plan-price">₹1,799</span>
+                                <span class="plan-period">/per month</span>
+                            </div>
+                            <p style="font-size: var(--text-sm); text-decoration: line-through; color: var(--gray-500); margin-top: var(--space-1);">₹1,996</p>
+                            <p style="font-size: var(--text-sm); color: var(--primary-green); font-weight: 500;">Save ₹197</p>
+                            <p class="plan-description">Maximum savings with consistent nutrition delivery</p>
+                        </div>
+
+                        <ul class="feature-list" role="list">
+                            <li role="listitem">28-30 daily greens pouches</li>
+                            <li role="listitem">Advanced health analytics</li>
+                            <li role="listitem">Free monthly delivery</li>
+                            <li role="listitem">Nutrition coaching calls</li>
+                            <li role="listitem">Recipe video library</li>
+                            <li role="listitem">Loyalty rewards program</li>
+                        </ul>
+
+                        <button class="btn btn-outline" style="width: 100%;" aria-label="Choose monthly plan">Save with Monthly</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--space-16); text-align: center;">
+                    <div style="background: var(--green-50); border: 2px solid var(--green-200); border-radius: var(--radius-2xl); padding: var(--space-8); max-width: 48rem; margin: 0 auto;">
+                        <div style="font-size: 2.5rem; margin-bottom: var(--space-4);" role="img" aria-label="Shield icon">🛡️</div>
+                        <h4 class="heading-md" style="margin-bottom: var(--space-2);">100% Satisfaction Guarantee</h4>
+                        <p style="color: var(--gray-600);">
+                            Not happy with your greens? We'll replace them or credit your wallet balance. 
+                            Cancel anytime with 48-hour notice before your next delivery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><span class="brand-highlight">MicroFit</span> Greens</h3>
+                    <p>
+                        Empowering urban health through hyperlocal, AI-personalized nutrition. 
+                        Started by urban farmers, backed by nutritionists and food-tech experts.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Follow us on Instagram">📱 Instagram</a>
+                        <a href="#" aria-label="Connect on LinkedIn">💼 LinkedIn</a>
+                        <a href="#" aria-label="Subscribe to YouTube">📺 YouTube</a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#">About Us</a>
+                    <a href="#quiz">Health Quiz</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#">Recipe Blog</a>
+                    <a href="#">FAQ</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="mailto:support@microfitgreens.in">📧 support@microfitgreens.in</a>
+                    <a href="tel:+91">📞 Call Support</a>
+                    <span style="font-size: var(--text-sm); color: var(--gray-400);">Mon–Sat 9AM–7PM</span>
+                    <a href="#">💬 Live Chat</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 MicroFit Greens. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz functionality
+        let currentStep = 0;
+        let answers = {
+            gender: "",
+            age: "",
+            activity: "",
+            goals: "",
+            dietary: ""
+        };
+
+        const questions = [
+            {
+                id: "gender",
+                title: "What's your gender?",
+                options: ["Male", "Female", "Prefer not to say"]
+            },
+            {
+                id: "age",
+                title: "What's your age group?",
+                options: ["18-25", "26-35", "36-45", "46-55", "55+"]
+            },
+            {
+                id: "activity",
+                title: "How active are you?",
+                options: ["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extremely Active"]
+            },
+            {
+                id: "goals",
+                title: "What's your primary health goal?",
+                options: ["Weight Loss", "Muscle Gain", "Detox & Cleanse", "General Wellness", "Energy Boost"]
+            },
+            {
+                id: "dietary",
+                title: "Any dietary preferences?",
+                options: ["No Restrictions", "Vegetarian", "Vegan", "Gluten-Free", "Keto-Friendly"]
+            }
+        ];
+
+        // Navigation functionality
+        function initializeNavigation() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navLinks = document.getElementById('nav-links');
+            const navLinksItems = document.querySelectorAll('.nav-link');
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isExpanded = navLinks.classList.contains('active');
+                mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
+            });
+
+            // Active nav link highlighting
+            function updateActiveNavLink() {
+                const scrollPosition = window.scrollY + 100;
+                const sections = ['home', 'benefits', 'quiz', 'pricing'];
+                
+                let currentSection = 'home';
+                sections.forEach(section => {
+                    const element = document.getElementById(section);
+                    if (element && scrollPosition >= element.offsetTop) {
+                        currentSection = section;
+                    }
+                });
+
+                navLinksItems.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Update on scroll
+            window.addEventListener('scroll', updateActiveNavLink);
+            
+            // Smooth scrolling for nav links
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    scrollToSection(targetId);
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const offsetTop = element.offsetTop - 80; // Account for fixed nav
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function scrollToQuiz() {
+            scrollToSection('quiz');
+        }
+
+        // Quiz functionality
+        function updateQuizDisplay() {
+            const question = questions[currentStep];
+            const progress = ((currentStep + 1) / questions.length) * 100;
+            
+            document.getElementById('current-question').textContent = currentStep + 1;
+            document.getElementById('total-questions').textContent = questions.length;
+            document.getElementById('progress-percent').textContent = Math.round(progress);
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('question-title').textContent = question.title;
+            
+            const progressBar = document.querySelector('.progress-bar');
+            progressBar.setAttribute('aria-valuenow', Math.round(progress));
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'quiz-option';
+                button.setAttribute('role', 'radio');
+                button.setAttribute('aria-checked', 'false');
+                button.setAttribute('tabindex', index === 0 ? '0' : '-1');
+                button.onclick = () => handleAnswer(option);
+                
+                // Keyboard navigation
+                button.addEventListener('keydown', (e) => {
+                    const options = optionsContainer.querySelectorAll('.quiz-option');
+                    const currentIndex = Array.from(options).indexOf(button);
+                    
+                    switch(e.key) {
+                        case 'ArrowDown':
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            const nextIndex = (currentIndex + 1) % options.length;
+                            options[nextIndex].focus();
+                            break;
+                        case 'ArrowUp':
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            const prevIndex = (currentIndex - 1 + options.length) % options.length;
+                            options[prevIndex].focus();
+                            break;
+                        case 'Enter':
+                        case ' ':
+                            e.preventDefault();
+                            handleAnswer(option);
+                            break;
+                    }
+                });
+                
+                button.innerHTML = `
+                    <div class="radio-dot"></div>
+                    <span>${option}</span>
+                `;
+                optionsContainer.appendChild(button);
+            });
+            
+            document.getElementById('prev-btn').disabled = currentStep === 0;
+            
+            // Focus management
+            setTimeout(() => {
+                const firstOption = optionsContainer.querySelector('.quiz-option');
+                if (firstOption) {
+                    firstOption.focus();
+                }
+            }, 100);
+        }
+
+        function handleAnswer(answer) {
+            const questionId = questions[currentStep].id;
+            answers[questionId] = answer;
+            
+            // Visual feedback
+            const optionsContainer = document.getElementById('quiz-options');
+            const options = optionsContainer.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+                option.setAttribute('aria-checked', 'false');
+                if (option.textContent.trim().includes(answer)) {
+                    option.classList.add('selected');
+                    option.setAttribute('aria-checked', 'true');
+                }
+            });
+            
+            if (currentStep < questions.length - 1) {
+                setTimeout(() => {
+                    currentStep++;
+                    updateQuizDisplay();
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    showResults();
+                }, 500);
+            }
+        }
+
+        function previousQuestion() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateQuizDisplay();
+            }
+        }
+
+        function resetQuiz() {
+            currentStep = 0;
+            answers = {
+                gender: "",
+                age: "",
+                activity: "",
+                goals: "",
+                dietary: ""
+            };
+            document.getElementById('quiz-form').style.display = 'block';
+            document.getElementById('quiz-results').classList.remove('active');
+            updateQuizDisplay();
+        }
+
+        function showResults() {
+            document.getElementById('quiz-form').style.display = 'none';
+            document.getElementById('quiz-results').classList.add('active');
+            
+            // Generate personalized results
+            const resultsContent = document.getElementById('results-content');
+            resultsContent.innerHTML = `
+                <div style="display: grid; gap: var(--space-3);">
+                    <div><strong>Gender:</strong> ${answers.gender}</div>
+                    <div><strong>Age Group:</strong> ${answers.age}</div>
+                    <div><strong>Activity Level:</strong> ${answers.activity}</div>
+                    <div><strong>Health Goal:</strong> ${answers.goals}</div>
+                    <div><strong>Dietary Preference:</strong> ${answers.dietary}</div>
+                </div>
+                <div style="margin-top: var(--space-6); padding: var(--space-4); background: white; border-radius: var(--radius-lg); border: 2px solid var(--green-200);">
+                    <h5 style="color: var(--primary-green); margin-bottom: var(--space-2);">Recommended Formula:</h5>
+                    <p style="font-size: var(--text-sm);">Based on your profile, we recommend a ${getRecommendedFormula()} blend with enhanced ${getEnhancedNutrients()}.</p>
+                </div>
+            `;
+            
+            // Focus management for accessibility
+            document.getElementById('quiz-results').focus();
+        }
+
+        function getRecommendedFormula() {
+            if (answers.goals === 'Weight Loss') return 'metabolism-boosting';
+            if (answers.goals === 'Muscle Gain') return 'protein-rich';
+            if (answers.goals === 'Detox & Cleanse') return 'antioxidant-rich';
+            if (answers.goals === 'Energy Boost') return 'vitamin B-complex';
+            return 'balanced wellness';
+        }
+
+        function getEnhancedNutrients() {
+            if (answers.activity === 'Very Active' || answers.activity === 'Extremely Active') {
+                return 'protein and iron content';
+            }
+            if (answers.age === '18-25') return 'calcium and vitamin D';
+            if (answers.age === '55+') return 'antioxidants and omega-3';
+            return 'essential vitamins and minerals';
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNavigation();
+            updateQuizDisplay();
+            
+            // Add animation delays
+            const animatedElements = document.querySelectorAll('.animate-scale-in, .animate-slide-in');
+            animatedElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
