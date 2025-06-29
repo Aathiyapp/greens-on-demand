@@ -1,0 +1,927 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroFit Greens - Personalized Nutrition. Delivered Fresh. Daily.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        /* Utility Classes */
+        .text-gradient {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-gradient-green {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+
+        .bg-gradient-subtle {
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid #10B981;
+            color: #10B981;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #F0FDF4;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #6B7280;
+        }
+
+        .btn-ghost:hover {
+            background: #F3F4F6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 50%, #DCFCE7 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 5rem;
+            left: 2.5rem;
+            width: 5rem;
+            height: 5rem;
+            background: #BBF7D0;
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 10rem;
+            right: 5rem;
+            width: 8rem;
+            height: 8rem;
+            background: #86EFAC;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float 6s ease-in-out infinite 1s;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #DCFCE7;
+            color: #166534;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+            border-radius: 2rem;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-image-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-image-icon {
+            width: 6rem;
+            height: 6rem;
+            background: #10B981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .delivery-badge {
+            position: absolute;
+            bottom: -1rem;
+            right: -1rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 1px solid #F3F4F6;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+            border-color: #BBF7D0;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+        }
+
+        .quiz-card {
+            max-width: 48rem;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 0.5rem;
+            background: #E5E7EB;
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            transition: width 0.5s ease;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-option {
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 0.75rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            border-color: #10B981;
+            background: #F0FDF4;
+            color: #059669;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.popular {
+            border-color: #10B981;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10B981;
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1F2937;
+        }
+
+        .price-period {
+            color: #6B7280;
+            font-size: 1rem;
+            margin-left: 0.25rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1F2937;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand .brand-highlight {
+            color: #10B981;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            color: #6B7280;
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-fade-in">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        🌱 Fresh • Personalized • Delivered Daily
+                    </div>
+                    <h1>
+                        <span class="text-gradient">Personalized Nutrition.</span><br>
+                        <span>Delivered Fresh.</span><br>
+                        <span style="color: #D97706;">Daily.</span>
+                    </h1>
+                    <p>Get your custom blend of microgreens, sprouts, and functional greens based on your unique health profile. No guesswork. Just results.</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="scrollToQuiz()">Start Your Health Quiz</button>
+                        <button class="btn btn-outline">View Plans</button>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; font-size: 0.875rem; color: #6B7280;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="width: 0.5rem; height: 0.5rem; background: #10B981; border-radius: 50%;"></span>
+                            Locally Grown in Bengaluru
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="width: 0.5rem; height: 0.5rem; background: #10B981; border-radius: 50%;"></span>
+                            AI-Powered Personalization
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="width: 0.5rem; height: 0.5rem; background: #10B981; border-radius: 50%;"></span>
+                            Weekly Fresh Delivery
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image animate-scale-in">
+                    <div class="hero-image-content">
+                        <div class="hero-image-icon">🥬</div>
+                        <h3 style="font-size: 1.5rem; font-weight: 600; color: #166534; margin-bottom: 0.5rem;">Fresh Daily Pouches</h3>
+                        <p style="color: #059669;">Your personalized microgreens delivered fresh every week</p>
+                    </div>
+                    <div class="delivery-badge">
+                        <div style="width: 3rem; height: 3rem; background: #10B981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.125rem;">📦</div>
+                        <div>
+                            <p style="font-weight: 600; color: #1F2937;">Weekly Delivery</p>
+                            <p style="font-size: 0.875rem; color: #6B7280;">Every Sunday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="animate-fade-in">
+                <h2 class="section-title">
+                    Why Choose <span class="text-gradient">MicroFit Greens</span>?
+                </h2>
+                <p class="section-subtitle">
+                    We combine cutting-edge health technology with fresh, local produce to deliver nutrition that's perfectly tailored to you.
+                </p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card animate-scale-in">
+                    <div class="benefit-icon">🧬</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1F2937; margin-bottom: 0.75rem;">AI-Powered Personalization</h3>
+                    <p style="color: #6B7280;">Custom greens formula based on your health profile, goals, and lifestyle preferences.</p>
+                </div>
+                
+                <div class="benefit-card animate-scale-in" style="animation-delay: 0.1s;">
+                    <div class="benefit-icon">🌱</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1F2937; margin-bottom: 0.75rem;">Locally Grown Fresh</h3>
+                    <p style="color: #6B7280;">Harvested fresh in Bengaluru urban farms and delivered within 24 hours of harvest.</p>
+                </div>
+                
+                <div class="benefit-card animate-scale-in" style="animation-delay: 0.2s;">
+                    <div class="benefit-icon">📦</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1F2937; margin-bottom: 0.75rem;">Weekly Delivery</h3>
+                    <p style="color: #6B7280;">Eco-friendly packaging delivered every Sunday. Pause or modify anytime.</p>
+                </div>
+                
+                <div class="benefit-card animate-scale-in" style="animation-delay: 0.3s;">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1F2937; margin-bottom: 0.75rem;">Results-Driven</h3>
+                    <p style="color: #6B7280;">Track your health journey with our consumption tracker and see real improvements.</p>
+                </div>
+                
+                <div class="benefit-card animate-scale-in" style="animation-delay: 0.4s;">
+                    <div class="benefit-icon">🔬</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1F2937; margin-bottom: 0.75rem;">Nutritionist Approved</h3>
+                    <p style="color: #6B7280;">Every blend is crafted by certified nutritionists and food-tech experts.</p>
+                </div>
+                
+                <div class="benefit-card animate-scale-in" style="animation-delay: 0.5s;">
+                    <div class="benefit-icon">💚</div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1F2937; margin-bottom: 0.75rem;">Zero Waste Approach</h3>
+                    <p style="color: #6B7280;">Sustainable farming practices with biodegradable packaging and carbon-neutral delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz-section" class="quiz-section">
+        <div class="container">
+            <div class="animate-fade-in">
+                <h2 class="section-title">
+                    Discover Your Perfect <span class="text-gradient">Greens Formula</span>
+                </h2>
+                <p class="section-subtitle">
+                    Take our 2-minute health quiz to get your AI-powered, personalized nutrition plan.
+                </p>
+            </div>
+
+            <div class="quiz-card">
+                <div style="display: flex; justify-content: space-between; font-size: 0.875rem; color: #6B7280; margin-bottom: 0.5rem;">
+                    <span>Question <span id="current-question">1</span> of <span id="total-questions">5</span></span>
+                    <span><span id="progress-percent">20</span>% Complete</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 20%;"></div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 id="question-title" style="font-size: 1.5rem; font-weight: 600; color: #1F2937; margin-bottom: 1rem;">What's your gender?</h3>
+                    <p style="color: #6B7280;">Select the option that best describes you</p>
+                </div>
+
+                <div class="quiz-options" id="quiz-options">
+                    <button class="quiz-option" onclick="handleAnswer('Male')">
+                        <span style="color: #10B981; margin-right: 0.75rem;">○</span>Male
+                    </button>
+                    <button class="quiz-option" onclick="handleAnswer('Female')">
+                        <span style="color: #10B981; margin-right: 0.75rem;">○</span>Female
+                    </button>
+                    <button class="quiz-option" onclick="handleAnswer('Prefer not to say')">
+                        <span style="color: #10B981; margin-right: 0.75rem;">○</span>Prefer not to say
+                    </button>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                    <button class="btn btn-ghost" onclick="previousQuestion()" id="prev-btn" disabled>← Previous</button>
+                    <button class="btn btn-ghost" onclick="resetQuiz()">Start Over</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <div class="animate-fade-in">
+                <h2 class="section-title">
+                    Choose Your <span class="text-gradient">Nutrition Plan</span>
+                </h2>
+                <p class="section-subtitle">
+                    Flexible plans designed to fit your lifestyle. Start small or commit to transformation.
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card animate-scale-in">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1F2937; margin-bottom: 0.25rem;">Starter Pack</h3>
+                        <p style="font-size: 0.875rem; color: #6B7280; margin-bottom: 1rem;">Try Before You Subscribe</p>
+                        <div>
+                            <span class="price">₹199</span>
+                            <span class="price-period">/3-day trial</span>
+                        </div>
+                        <p style="font-size: 0.875rem; color: #6B7280; margin-top: 0.75rem;">Perfect for first-time users to experience personalized nutrition</p>
+                    </div>
+
+                    <ul class="feature-list">
+                        <li>3 daily greens pouches</li>
+                        <li>Personalized mix based on quiz</li>
+                        <li>Free delivery in Bengaluru</li>
+                        <li>Health tracking app access</li>
+                        <li>Nutritionist chat support</li>
+                    </ul>
+
+                    <button class="btn btn-outline" style="width: 100%;">Start Trial</button>
+                </div>
+
+                <div class="pricing-card popular animate-scale-in" style="animation-delay: 0.1s;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1F2937; margin-bottom: 0.25rem;">Weekly Plan</h3>
+                        <p style="font-size: 0.875rem; color: #6B7280; margin-bottom: 1rem;">Most Flexible</p>
+                        <div>
+                            <span class="price">₹499</span>
+                            <span class="price-period">/per week</span>
+                        </div>
+                        <p style="font-size: 0.875rem; color: #6B7280; margin-top: 0.75rem;">Weekly commitment with full flexibility to pause or modify</p>
+                    </div>
+
+                    <ul class="feature-list">
+                        <li>7 daily greens pouches</li>
+                        <li>AI-optimized nutrition plan</li>
+                        <li>Free weekly delivery</li>
+                        <li>Custom recipe suggestions</li>
+                        <li>Priority customer support</li>
+                        <li>Pause anytime</li>
+                    </ul>
+
+                    <button class="btn btn-primary" style="width: 100%;">Choose Weekly</button>
+                </div>
+
+                <div class="pricing-card animate-scale-in" style="animation-delay: 0.2s;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1F2937; margin-bottom: 0.25rem;">Monthly Plan</h3>
+                        <p style="font-size: 0.875rem; color: #6B7280; margin-bottom: 1rem;">Best Value</p>
+                        <div>
+                            <span class="price">₹1,799</span>
+                            <span class="price-period">/per month</span>
+                        </div>
+                        <p style="font-size: 0.875rem; text-decoration: line-through; color: #6B7280; margin-top: 0.25rem;">₹1,996</p>
+                        <p style="font-size: 0.875rem; color: #10B981; font-weight: 500;">Save ₹197</p>
+                        <p style="font-size: 0.875rem; color: #6B7280; margin-top: 0.75rem;">Maximum savings with consistent nutrition delivery</p>
+                    </div>
+
+                    <ul class="feature-list">
+                        <li>28-30 daily greens pouches</li>
+                        <li>Advanced health analytics</li>
+                        <li>Free monthly delivery</li>
+                        <li>Nutrition coaching calls</li>
+                        <li>Recipe video library</li>
+                        <li>Loyalty rewards program</li>
+                    </ul>
+
+                    <button class="btn btn-outline" style="width: 100%;">Save with Monthly</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <div style="background: #F0FDF4; border: 2px solid #BBF7D0; border-radius: 1rem; padding: 2rem; max-width: 48rem; margin: 0 auto;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
+                    <h4 style="font-size: 1.25rem; font-weight: 600; color: #1F2937; margin-bottom: 0.5rem;">100% Satisfaction Guarantee</h4>
+                    <p style="color: #6B7280;">
+                        Not happy with your greens? We'll replace them or credit your wallet balance. 
+                        Cancel anytime with 48-hour notice before your next delivery.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><span class="brand-highlight">MicroFit</span> Greens</h3>
+                    <p style="color: #9CA3AF; margin-bottom: 1.5rem; max-width: 24rem;">
+                        Empowering urban health through hyperlocal, AI-personalized nutrition. 
+                        Started by urban farmers, backed by nutritionists and food-tech experts.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: #9CA3AF; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#10B981'" onmouseout="this.style.color='#9CA3AF'">📱 Instagram</a>
+                        <a href="#" style="color: #9CA3AF; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#10B981'" onmouseout="this.style.color='#9CA3AF'">💼 LinkedIn</a>
+                        <a href="#" style="color: #9CA3AF; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#10B981'" onmouseout="this.style.color='#9CA3AF'">📺 YouTube</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="font-weight: 600; margin-bottom: 1rem;">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#quiz-section">Health Quiz</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Recipe Blog</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="font-weight: 600; margin-bottom: 1rem;">Support</h4>
+                    <div class="footer-links">
+                        <a href="mailto:support@microfitgreens.in">📧 support@microfitgreens.in</a>
+                        <a href="tel:+91">📞 Call Support</a>
+                        <span style="font-size: 0.875rem; color: #9CA3AF;">Mon–Sat 9AM–7PM</span>
+                        <a href="#">💬 Live Chat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p style="color: #9CA3AF; font-size: 0.875rem;">
+                    © 2025 MicroFit Greens. All rights reserved.
+                </p>
+                <div style="display: flex; gap: 1.5rem; font-size: 0.875rem;">
+                    <a href="#" style="color: #9CA3AF; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#9CA3AF'">Privacy Policy</a>
+                    <a href="#" style="color: #9CA3AF; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#9CA3AF'">Terms of Service</a>
+                    <a href="#" style="color: #9CA3AF; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#9CA3AF'">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz functionality
+        let currentStep = 0;
+        let answers = {
+            gender: "",
+            age: "",
+            activity: "",
+            goals: "",
+            dietary: ""
+        };
+
+        const questions = [
+            {
+                id: "gender",
+                title: "What's your gender?",
+                options: ["Male", "Female", "Prefer not to say"]
+            },
+            {
+                id: "age",
+                title: "What's your age group?",
+                options: ["18-25", "26-35", "36-45", "46-55", "55+"]
+            },
+            {
+                id: "activity",
+                title: "How active are you?",
+                options: ["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extremely Active"]
+            },
+            {
+                id: "goals",
+                title: "What's your primary health goal?",
+                options: ["Weight Loss", "Muscle Gain", "Detox & Cleanse", "General Wellness", "Energy Boost"]
+            },
+            {
+                id: "dietary",
+                title: "Any dietary preferences?",
+                options: ["No Restrictions", "Vegetarian", "Vegan", "Gluten-Free", "Keto-Friendly"]
+            }
+        ];
+
+        function scrollToQuiz() {
+            document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateQuizDisplay() {
+            const question = questions[currentStep];
+            const progress = ((currentStep + 1) / questions.length) * 100;
+            
+            document.getElementById('current-question').textContent = currentStep + 1;
+            document.getElementById('total-questions').textContent = questions.length;
+            document.getElementById('progress-percent').textContent = Math.round(progress);
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('question-title').textContent = question.title;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'quiz-option';
+                button.onclick = () => handleAnswer(option);
+                button.innerHTML = `<span style="color: #10B981; margin-right: 0.75rem;">○</span>${option}`;
+                optionsContainer.appendChild(button);
+            });
+            
+            document.getElementById('prev-btn').disabled = currentStep === 0;
+        }
+
+        function handleAnswer(answer) {
+            const questionId = questions[currentStep].id;
+            answers[questionId] = answer;
+            
+            if (currentStep < questions.length - 1) {
+                setTimeout(() => {
+                    currentStep++;
+                    updateQuizDisplay();
+                }, 300);
+            } else {
+                setTimeout(() => {
+                    showResults();
+                }, 300);
+            }
+        }
+
+        function previousQuestion() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateQuizDisplay();
+            }
+        }
+
+        function resetQuiz() {
+            currentStep = 0;
+            answers = {
+                gender: "",
+                age: "",
+                activity: "",
+                goals: "",
+                dietary: ""
+            };
+            updateQuizDisplay();
+        }
+
+        function showResults() {
+            alert("🎉 Quiz Complete! Your personalized greens plan is being generated...\n\nBased on your responses:\n" + 
+                  "Gender: " + answers.gender + "\n" +
+                  "Age: " + answers.age + "\n" +
+                  "Activity: " + answers.activity + "\n" +
+                  "Goals: " + answers.goals + "\n" +
+                  "Dietary: " + answers.dietary + "\n\n" +
+                  "Your custom formula is ready!");
+        }
+
+        // Initialize quiz
+        updateQuizDisplay();
+
+        // Smooth scrolling for all anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
